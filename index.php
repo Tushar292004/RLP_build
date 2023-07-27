@@ -29,7 +29,6 @@
             transition: background-color 0.3s ease; 
         }
 
-
         .left-div img {
             width: 360px; 
             height: 150px; 
@@ -71,7 +70,6 @@
             transition: background-color 0.3s ease;
         }
 
-
         .right-div {
             flex: 1;
             background-color: #e1e1e1;
@@ -79,19 +77,41 @@
             box-sizing: border-box;
         }
 
-        
         .right-div iframe {
             width: 100%;
             height: 100%;
+        }
+
+        /* Media Query for Mobile Screens */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-div {
+                flex: 1;
+            }
+
+            .left-div img {
+                width: 200px;
+                height: 80px;
+                top: 5px;
+            }
+
+            .left-div h2 {
+                font-size: 20px;
+            }
+
+            .left-div form {
+                max-width: 200px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="left-div">
-        
             <img src="//sathyabama.cognibot.in/pluginfile.php/1/theme_klass/logo/1687444541/Logo%202023.svg" alt="Logo">
-
             <h2>Enter Address or Coordinates</h2>
             <!-- Form for Address -->
             <form method="POST">
@@ -108,17 +128,14 @@
             </form>
         </div>
         <div class="right-div">
-        
             <?php
-            if (isset($_POST["submit_coordinates"]))
-            {
+            if (isset($_POST["submit_coordinates"])) {
                 $latitude = $_POST["latitude"];
                 $longitude = $_POST["longitude"];
                 ?>
                 <iframe src="https://maps.google.com/maps?q=<?php echo $latitude; ?>,<?php echo $longitude; ?>&output=embed"></iframe>
                 <?php
-            } elseif (isset($_POST["submit_address"]))
-            {
+            } elseif (isset($_POST["submit_address"])) {
                 $address = $_POST["address"];
                 $address = str_replace(" ", "+", $address);
                 ?>
